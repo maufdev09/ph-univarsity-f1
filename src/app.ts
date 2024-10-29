@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express'
 import { MovieRoutes } from './app/modules/movie/movie.routes'
 export const app = express()
-
+app.use(express.json())
 
 app.use("/api/movies",MovieRoutes)
 

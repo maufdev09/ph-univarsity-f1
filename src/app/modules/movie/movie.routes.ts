@@ -1,10 +1,10 @@
-import express, { Response } from 'express';
+import express from 'express';
+import { movieCrontrollers } from './movie.controllers';
 const router= express.Router();
 
-router.post('/',(req:Request, res:Response)=>{
-
-
-})
+router.post('/', movieCrontrollers.createMovieController)
+router.get('/', movieCrontrollers.getMovieController)
+router.get('/:movieId', movieCrontrollers.getMovieByIdController)
 
 
 export const MovieRoutes = router

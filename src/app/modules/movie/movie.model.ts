@@ -1,5 +1,5 @@
 import {   model, Schema } from "mongoose";
-import { TMovie } from "./movie.interface";
+import { TMovie, TReview } from "./movie.interface";
 
 // Review Schema
 const reviewSchema = new Schema<TReview>({
@@ -42,11 +42,7 @@ const reviewSchema = new Schema<TReview>({
       default: 0,
     },
     reviews: [reviewSchema], // Array of subdocuments
-    slug: {
-      type: String,
-      required: true,
-      unique: true,
-    },
+ 
     isDeleted: {
       type: Boolean,
       default: false,
@@ -56,4 +52,4 @@ const reviewSchema = new Schema<TReview>({
   });
   
 
-  const Movie= model<TMovie>("Movie",movieSchema)
+  export const Movie= model<TMovie>("Movie",movieSchema)
