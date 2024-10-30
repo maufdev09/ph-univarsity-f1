@@ -4,7 +4,7 @@ export type TMovie={
     releaseDate: Date,
     genre: string,
     viewCount: number,
-    reviews: [TReview],
+    totalRating: number,
     slug: string,
     isDeleted: boolean,
 
@@ -12,8 +12,3 @@ export type TMovie={
 }
 
 
-export type TReview={
-    email: string,
-        rating: number,
-        comment: string,
-}

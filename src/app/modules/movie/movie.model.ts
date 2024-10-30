@@ -1,26 +1,13 @@
-import {   model, Schema } from "mongoose";
+import { model, Schema } from "mongoose";
 import { TMovie, TReview } from "./movie.interface";
+import { format } from "date-fns";
+import slugify from "slugify";
 
-// Review Schema
-const reviewSchema = new Schema<TReview>({
-    email: {
-      type: String,
-      required: true,
-    },
-    rating: {
-      type: Number,
-      required: true,
-    },
-    comment: {
-      type: String,
-      required: true,
-    },
-  }, {
-    timestamps: true, // Automatically manage createdAt and updatedAt fields
-  });
-  
-  // Movie Schema
-  const movieSchema = new Schema<TMovie>({
+
+
+// Movie Schema
+const movieSchema = new Schema<TMovie>(
+  {
     title: {
       type: String,
       required: true,
@@ -41,15 +28,29 @@ const reviewSchema = new Schema<TReview>({
       type: Number,
       default: 0,
     },
-    reviews: [reviewSchema], // Array of subdocuments
- 
+    totalRating: {
+      type: Number,
+      default: 0,
+    },
+
     isDeleted: {
       type: Boolean,
       default: false,
     },
-  }, {
+  },
+  {
     timestamps: true, // Automatically manage createdAt and updatedAt fields
-  });
-  
+  }
+);
 
-  export const Movie= model<TMovie>("Movie",movieSchema)
+movieSchema.pre("save", async function (next) {
+  const date = format(this.releaseDate, "dd-MM-yyyy");
+
+  this.slug = slugify(`${this.title}-${date}`, {
+    lower: true,
+  });
+
+  next();
+});
+
+export const Movie = model<TMovie>("Movie", movieSchema);
