@@ -4,7 +4,8 @@ const router= express.Router();
 
 router.post('/', movieCrontrollers.createMovieController)
 router.get('/', movieCrontrollers.getMovieController)
-router.get('/:movieId', movieCrontrollers.getMovieByIdController)
+router.get('/:slug', movieCrontrollers.getMovieByslug)
+router.post('/:slug/review',reviewCrontrollers.addReview)
 
 
 export const MovieRoutes = router

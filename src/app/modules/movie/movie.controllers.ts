@@ -21,11 +21,14 @@ const getMovieController= async (req: Request, res: Response)=>{
         data: result
  } )
 }
-const getMovieByIdController= async (req: Request, res: Response)=>{
-const movieId=req.params.movieId
-console.log(movieId);
+const getMovieByslug= async (req: Request, res: Response)=>{
 
-    const result = await MovieServices.getMovieById(movieId)
+
+
+
+const {slug}=req.params
+
+    const result = await MovieServices.getMovieBySlug(slug)
     res.json({
         success: true,
         message: "Movies retrieved by id was successfully",
@@ -37,6 +40,6 @@ console.log(movieId);
 export const movieCrontrollers={
 createMovieController,
 getMovieController,
-getMovieByIdController
+getMovieByslug
 
 }

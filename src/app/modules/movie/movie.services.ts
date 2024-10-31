@@ -9,8 +9,8 @@ const getMovie=async()=>{
     const result =await Movie.find()
     return result
 }
-const getMovieById=async( movieId: string )=>{
-    const result =await  Movie.findById({ _id:movieId})
+const getMovieBySlug=async( slug: string )=>{
+    const result =await  Movie.findOne({ slug:slug})
     return result
 }
 
@@ -18,6 +18,6 @@ const getMovieById=async( movieId: string )=>{
 export const MovieServices={
     createMovie,
     getMovie,
-    getMovieById
+    getMovieBySlug
     
 }
