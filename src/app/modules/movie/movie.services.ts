@@ -13,6 +13,10 @@ const getMovieBySlug=async( slug: string )=>{
     const result =await  Movie.findOne({ slug:slug})
     return result
 }
+const getMovieBySlugs=async( slug: string )=>{
+    const result =await  Movie.findOne({ slug:slug})
+    return result
+}
 
 
 export const MovieServices={
